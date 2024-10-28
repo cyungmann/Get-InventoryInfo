@@ -1,10 +1,9 @@
 [CmdletBinding()]
 [OutputType([void])]
 param(
-    [ValidateNotNullOrWhiteSpace()]
     [ValidateScript({Test-Path $_ -IsValid})]
     [Parameter()]
-    [string] $OutputDirectory = (Join-Path -Path $PSScriptRoot -ChildPath 'results' -AdditionalChildPath (Get-Date).ToString('yyyyMMddhhmmss')),
+    [string] $OutputDirectory = "$PSScriptRoot\results\$((Get-Date).ToString('yyyyMMddhhmmss'))",
 
     [ValidateNotNull()]
     [Parameter()]
@@ -16,8 +15,6 @@ param(
 
 Set-StrictMode -Version 3
 $ErrorActionPreference = 'Stop'
-
-$OutputDirectory = [System.IO.Path]::GetFullPath($OutputDirectory, $PWD)
 
 Start-Transcript -LiteralPath (Join-Path -Path $OutputDirectory -ChildPath 'transcript.txt') -IncludeInvocationHeader
 
@@ -32,7 +29,6 @@ function Export-Data {
     [CmdletBinding()]
     [OutputType([void])]
     param(
-        [ValidateNotNullOrWhiteSpace()]
         [Parameter(Mandatory, Position = 1)]
         [string] $Name,
 
