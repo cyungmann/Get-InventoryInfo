@@ -43,7 +43,7 @@ function Export-Data {
     $Data | ConvertTo-Html | Set-Content -LiteralPath (Join-Path -Path $OutputDirectory -ChildPath "$Name.html")
 }
 
-Export-Data -Name 'computerInfo'            -Data Get-ComputerInfo
+Export-Data -Name 'computerInfo'            -Data (Get-ComputerInfo)
 Export-Data -Name 'volumes'                 -Data @(Get-Volume)
 Export-Data -Name 'localUsers'              -Data @(Get-LocalUser)
 Export-Data -Name 'localGroups'             -Data @(Get-LocalGroup)
