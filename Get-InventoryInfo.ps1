@@ -60,5 +60,6 @@ Export-Data -Name 'cimWin32LoggedOnUser'    -Data @(Get-CimInstance -ClassName W
 if ($AdditionalData.Count -gt 0) {
     Export-Data -Name 'additionalData'      -Data $AdditionalData
 }
+dsregcmd.exe /status *> (Join-Path -Path $OutputDirectory -ChildPath 'dsregcmd.txt')
 
 Stop-Transcript
